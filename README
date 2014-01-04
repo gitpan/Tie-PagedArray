@@ -1,5 +1,5 @@
 Tie-PagedArray
-Version:0.01
+Version:0.02
 
 This tieable module helps deal with large arrays that can otherwise exhaust the memory, by implementing paging. The elements of the paged array can be anything.
 

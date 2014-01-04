@@ -16,9 +16,11 @@ is @tied_arr, 4, "Length == 4 before push";
 push(@tied_arr, 15);
 is @tied_arr, 5, "Length == 5 after push";
 is_deeply \@tied_arr, [11..15], "Contents 11..15";
-print "Print in while():\n";
-while(my($val) = each @tied_arr) {
-	print $tied_arr[$val], "," ;
+if ($] >= 5.012) {
+	print "Print with while(each) (>v5.012):\n";
+	while(my($i, $val) = each @tied_arr) {
+		print $val, "," ;
+	}
 }
 print "\n";
 is_deeply [splice(@tied_arr, 2,2,10)], [13,14], "Spliced content test";

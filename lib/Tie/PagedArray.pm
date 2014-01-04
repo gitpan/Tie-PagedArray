@@ -1,5 +1,5 @@
 package Tie::PagedArray;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 use 5.008;
 
 =pod
@@ -10,7 +10,7 @@ Tie::PagedArray - A tieable module for handling large arrays by paging
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =head1 SYNOPSIS
 
@@ -597,14 +597,15 @@ sub _retrieve {
 
 1) C<foreach> loop must not be used on C<Tie::PagedArray>s because the array in foreach expands into an in-memory list. Instead, use iterative loops.
 
-  while(my($i) = each(@large_array)) {
+  for(my $i = 0; $i < scalar(@large_array); $i++) {
     # Do something with $large_array[$i]
   }
 
   OR
 
-  for(my $i = 0; $i < scalar(@large_array); $i++) {
-    # Do something with $large_array[$i]
+  # In versions 5.012 and later
+  while(my($i, $val) = each(@large_array)) {
+    # Do something with $val
   }
 
 
